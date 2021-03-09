@@ -187,8 +187,8 @@ class PhysicalDisplay:
         c += 'c\\n'
         c += '" | g810-led -pp'
         #c += '" | cat'
-        subprocess.call(c, shell=True)
-        #print(c)
+        #subprocess.call(c, shell=True)
+        print(c)
         time.sleep(.3)
 
 
@@ -265,10 +265,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Keyboard animations')
     args = parser.parse_args()
 
-    p = Pixel(Point(0, 0), Colour(0xff, 0xbb, 0x99))
-    p2 = Pixel(Point(-1, 1), Colour(0xdd, 0xee, 0x87))
-    s = Sprite([p, p2])
-    a = AnimatedSprite(s, Point(0, 1))
+    p = [
+            Pixel(Point(0, 0), Colour(0xff, 0xbb, 0x99)),
+            Pixel(Point(0, 1), Colour(0xdd, 0xee, 0x87)),
+            Pixel(Point(0, 2), Colour(0xdd, 0xee, 0x87)),
+            Pixel(Point(0, 3), Colour(0xdd, 0xee, 0x87)),
+            Pixel(Point(0, 4), Colour(0xdd, 0xee, 0x87)),
+            Pixel(Point(0, 5), Colour(0xdd, 0xee, 0x87))
+        ]
+    s = Sprite(p)
+    a = AnimatedSprite(s, Point(0, 0))
     d = VirtualDisplay([])
     d.add_sprite(a)
     v = View(d)
