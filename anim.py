@@ -274,26 +274,25 @@ if __name__ == '__main__':
             Pixel(Point(5, 0), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(6, 0), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(0, 1), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(1, 1), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(3, 1), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(6, 1), Colour(0x41, 0x69, 0xe1)),
             Pixel(Point(7, 1), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(1, 2), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(3, 2), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(6, 2), Colour(0x41, 0x69, 0xe1)),
-            Pixel(Point(8, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(2, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(6, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(7, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(0, 3), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(1, 3), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(3, 3), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(8, 3), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(5, 3), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(6, 3), Colour(0xff, 0xa5, 0x00)),
             Pixel(Point(0, 4), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(1, 4), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(3, 4), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(7, 5), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(0, 5), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(4, 5), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(6, 5), Colour(0xff, 0xa5, 0x00)),
-            Pixel(Point(7, 5), Colour(0xff, 0xa5, 0x00))
+            Pixel(Point(4, 4), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(5, 4), Colour(0xff, 0xa5, 0x00))
         ]
     s = Sprite(p)
-    a = AnimatedSprite(s, Point(0, 0))
+    a = AnimatedSprite(s, Point(0, 1))
     d = VirtualDisplay([])
     d.add_sprite(a)
     v = View(d)
