@@ -130,7 +130,7 @@ class PixelMapper:
             Point(22, 3): Key("num_5"), Point(23, 3): Key("num_6"),
             Point(24, 3): Key("num_plus"),
 
-            Point(0, 4): Key("shift_left"), Point(1, 4): Key("intl_backslash"), # <- need to figure this key
+            Point(0, 4): Key("shift_left"), Point(1, 4): Key("intl_backslash"),
             Point(2, 4): Key("z"), Point(3, 4): Key("x"),
             Point(4, 4): Key("c"), Point(5, 4): Key("c"),
             Point(6, 4): Key("v"), Point(7, 4): Key("b"),
@@ -168,13 +168,16 @@ class PixelMapper:
 
 @dataclass
 class PhysicalDisplay:
+    width: int = 20
+    height: int = 6
     lights: Dict[Key, Colour] = field(default_factory=dict)
     pixel_mapper: PixelMapper = PixelMapper()
 
     def add_sprite(self, sprite: Sprite):
         for pixel in sprite.pixels:
             point = pixel.point
-            self.lights[self.pixel_mapper.translate(point)] = pixel.colour
+            visible_point = Point(point.x % self.width, point.y % self.height)
+            self.lights[self.pixel_mapper.translate(visible_point)] = pixel.colour
         
     def to_keyboard(self):
         c = 'echo -e "'
@@ -187,8 +190,8 @@ class PhysicalDisplay:
         c += 'c\\n'
         c += '" | g810-led -pp'
         #c += '" | cat'
-        #subprocess.call(c, shell=True)
         print(c)
+        subprocess.call(c, shell=True)
         time.sleep(.3)
 
 
@@ -266,12 +269,28 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     p = [
-            Pixel(Point(0, 0), Colour(0xff, 0xbb, 0x99)),
-            Pixel(Point(0, 1), Colour(0xdd, 0xee, 0x87)),
-            Pixel(Point(0, 2), Colour(0xdd, 0xee, 0x87)),
-            Pixel(Point(0, 3), Colour(0xdd, 0xee, 0x87)),
-            Pixel(Point(0, 4), Colour(0xdd, 0xee, 0x87)),
-            Pixel(Point(0, 5), Colour(0xdd, 0xee, 0x87))
+            Pixel(Point(0, 0), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(4, 0), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(5, 0), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(6, 0), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(0, 1), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(3, 1), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(7, 1), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(1, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(3, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(6, 2), Colour(0x41, 0x69, 0xe1)),
+            Pixel(Point(8, 2), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(1, 3), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(3, 3), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(8, 3), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(0, 4), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(1, 4), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(3, 4), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(7, 5), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(0, 5), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(4, 5), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(6, 5), Colour(0xff, 0xa5, 0x00)),
+            Pixel(Point(7, 5), Colour(0xff, 0xa5, 0x00))
         ]
     s = Sprite(p)
     a = AnimatedSprite(s, Point(0, 0))
