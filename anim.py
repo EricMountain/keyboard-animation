@@ -168,7 +168,7 @@ class PixelMapper:
 
 @dataclass
 class PhysicalDisplay:
-    width: int = 20
+    width: int = 16
     height: int = 6
     lights: Dict[Key, Colour] = field(default_factory=dict)
     pixel_mapper: PixelMapper = PixelMapper()
