@@ -28,9 +28,11 @@ class Colour:
 @dataclass
 class Key:
     key: str
+    isGroup: False
 
     def __hash__(self):
         return hash(repr(self))
+
 
 @dataclass
 class KeyColours:
@@ -47,13 +49,17 @@ class KeyColours:
             #print(key, colour)
             if key is None:
                 continue
-            c += f'k {key.key} {colour.rgb_hex()}\\n'
+            if key.isGroup:
+                c += 'g '
+            else:
+                c += 'k '
+            c += f'{key.key} {colour.rgb_hex()}\\n'
         c += 'c\\n'
         c += '" | g810-led -pp'
         #c += '" | cat'
         print(c)
         subprocess.call(c, shell=True)
-        time.sleep(.3)
+        # time.sleep(.3)
 
 # Available keys: (run `g810-led --help-keys` to see all possibilities including groups)
 #
@@ -79,8 +85,32 @@ if __name__ == '__main__':
     keyColours = KeyColours()
     
     # This example uses key groups
-    keyColours.add(Key("space"), Colour(0xff, 0x00, 0x00)),
-    keyColours.add(Key("keys"), Colour(0xff, 0xff, 0xff)),
-    keyColours.add(Key("modifiers"), Colour(0x00, 0xff, 0x00)),
+    keyColours.add(Key("space", False), Colour(0xff, 0x00, 0x00)),
+    keyColours.add(Key("keys", True), Colour(0xff, 0xff, 0xff)),
+    keyColours.add(Key("modifiers", True), Colour(0x00, 0xff, 0x00)),
 
     keyColours.render()
+
+    # Sample animation
+    prevKey = 0
+    currKey = 1
+    direction = 1
+    refresh_interval = .3
+    while True:
+        keyColours2 = KeyColours()
+
+        if i != 0:
+            # Turn off the previous key
+            keyColours2.add(Key(f'F{prevKey}', False), Colour(0x00, 0x00, 0x00))
+            prevKey = currKey
+
+        keyColours2.add(Key(f'F{currKey}', False), Colour(0xdd, 0x00, 0x00))
+        
+        if currKey == 12:
+            direction = -1
+        elif currKey == 1 and direction == -1:
+            direction = 1
+        currKey += direction
+
+        keyColours.render()
+        time.sleep(refresh_interval)
