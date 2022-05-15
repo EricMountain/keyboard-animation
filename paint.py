@@ -38,7 +38,7 @@ class KeyColours:
     lights: Dict[Key, Colour] = field(default_factory=dict)
 
     def add(self, key, colour):
-        lights[key] = colour
+        self.lights[key] = colour
 
     def render(self):
         c = 'echo -e "'
@@ -79,8 +79,8 @@ if __name__ == '__main__':
     keyColours = KeyColours()
     
     # This example uses key groups
-    KeyColours.add(Key("fkeys"), Colour(0xff, 0x00, 0x00)),
-    KeyColours.add(Key("keys"), Colour(0xff, 0xff, 0xff)),
-    KeyColours.add(Key("modifiers"), Colour(0x00, 0xff, 0x00)),
-    
-    KeyColours.render()
+    keyColours.add(Key("fkeys"), Colour(0xff, 0x00, 0x00)),
+    keyColours.add(Key("keys"), Colour(0xff, 0xff, 0xff)),
+    keyColours.add(Key("modifiers"), Colour(0x00, 0xff, 0x00)),
+
+    keyColours.render()
