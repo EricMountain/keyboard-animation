@@ -37,14 +37,19 @@ class Key:
 @dataclass
 class KeyColours:
     '''List of key-colour mappings'''
+    clear: bool
     lights: Dict[Key, Colour] = field(default_factory=dict)
+
+    def doClear(self):
+        self.clear = true
 
     def add(self, key, colour):
         self.lights[key] = colour
 
     def render(self):
         c = 'echo -e "'
-        c += 'a 000000\\n'
+        if clear:
+            c += 'a 000000\\n'
         for key, colour in self.lights.items():
             #print(key, colour)
             if key is None:
@@ -83,6 +88,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     keyColours = KeyColours()
+    keyColours.doClear()
     
     # This example uses key groups
     keyColours.add(Key("space", False), Colour(0xff, 0x00, 0x00)),
