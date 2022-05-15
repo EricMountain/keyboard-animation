@@ -112,5 +112,5 @@ if __name__ == '__main__':
             direction = 1
         currKey += direction
 
-        keyColours.render()
+        keyColours2.render()
         time.sleep(refresh_interval)
