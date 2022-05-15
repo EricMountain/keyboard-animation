@@ -79,7 +79,7 @@ if __name__ == '__main__':
     keyColours = KeyColours()
     
     # This example uses key groups
-    keyColours.add(Key("fkeys"), Colour(0xff, 0x00, 0x00)),
+    keyColours.add(Key("space"), Colour(0xff, 0x00, 0x00)),
     keyColours.add(Key("keys"), Colour(0xff, 0xff, 0xff)),
     keyColours.add(Key("modifiers"), Colour(0x00, 0xff, 0x00)),
 
