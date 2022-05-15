@@ -48,7 +48,7 @@ class KeyColours:
 
     def render(self):
         c = 'echo -e "'
-        if clear:
+        if self.clear:
             c += 'a 000000\\n'
         for key, colour in self.lights.items():
             #print(key, colour)
