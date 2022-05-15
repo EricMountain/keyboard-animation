@@ -43,7 +43,7 @@ class KeyColours:
     def render(self):
         c = 'echo -e "'
         c += 'a 000000\\n'
-        for keyColour in self.lights.items():
+        for key, colour in self.lights.items():
             #print(key, colour)
             if key is None:
                 continue
