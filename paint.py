@@ -99,13 +99,13 @@ if __name__ == '__main__':
     while True:
         keyColours2 = KeyColours()
 
-        if i != 0:
+        if prevKey != 0:
             # Turn off the previous key
             keyColours2.add(Key(f'F{prevKey}', False), Colour(0x00, 0x00, 0x00))
             prevKey = currKey
 
         keyColours2.add(Key(f'F{currKey}', False), Colour(0xdd, 0x00, 0x00))
-        
+
         if currKey == 12:
             direction = -1
         elif currKey == 1 and direction == -1:
