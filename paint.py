@@ -37,7 +37,7 @@ class Key:
 @dataclass
 class KeyColours:
     '''List of key-colour mappings'''
-    clear: bool
+    clear: bool = False
     lights: Dict[Key, Colour] = field(default_factory=dict)
 
     def doClear(self):
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     keyColours = KeyColours()
     keyColours.doClear()
-    
+
     # This example uses key groups
     keyColours.add(Key("space", False), Colour(0xff, 0x00, 0x00)),
     keyColours.add(Key("keys", True), Colour(0xff, 0xff, 0xff)),
