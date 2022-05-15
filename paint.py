@@ -102,7 +102,7 @@ if __name__ == '__main__':
         if prevKey != 0:
             # Turn off the previous key
             keyColours2.add(Key(f'F{prevKey}', False), Colour(0x00, 0x00, 0x00))
-            prevKey = currKey
+        prevKey = currKey
 
         keyColours2.add(Key(f'F{currKey}', False), Colour(0xdd, 0x00, 0x00))
 
