@@ -41,7 +41,7 @@ class KeyColours:
     lights: Dict[Key, Colour] = field(default_factory=dict)
 
     def doClear(self):
-        self.clear = true
+        self.clear = True
 
     def add(self, key, colour):
         self.lights[key] = colour
